@@ -4,7 +4,7 @@ from django.db import models
 class User(models.Model):
     full_name = models.CharField(max_length=50, blank=True, null=True)
     age = models.IntegerField(default=0)
-    birth = models.DateField(blank=True, null=True)
+    birth = models.DateTimeField(blank=True, null=True)
     email = models.CharField(max_length=50, blank=True, null=True)
     ipv4 = models.CharField(max_length=20, blank=True, null=True)
     phone = models.CharField(max_length=50, blank=True, null=True)
