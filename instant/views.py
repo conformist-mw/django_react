@@ -1,20 +1,18 @@
-from rest_framework.views import APIView
-from rest_framework.response import Response
+from rest_framework import viewsets, renderers
 from .models import User
 from .serializers import UserSerializer
 
 
-class UserList(APIView):
-
-    def get(self, request, format=None):
-        users = User.objects.all()
-        serializer = UserSerializer(users, many=True)
-        return Response(serializer.data)
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    renderer_classes = [renderers.JSONRenderer]
 
 
-class UserDetail(APIView):
+class UserDetail(viewsets.ModelViewSet):
+    serializer_class = UserSerializer
+    renderer_classes = [renderers.JSONRenderer]
 
-    def get(self, request, pk, format=None):
-        user = User.objects.get(pk=pk)
-        serializer = UserSerializer(user)
-        return Response(serializer.data)
+    def get_queryset(self):
+        pk = self.kwargs['pk']
+        return User.objects.filter(pk=pk)
