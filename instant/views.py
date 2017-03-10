@@ -1,5 +1,5 @@
 from rest_framework.viewsets import ModelViewSet
-# from rest_framework.renderers import JSONRenderer
+from rest_framework.renderers import JSONRenderer
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from .models import User
@@ -14,7 +14,7 @@ class UserPagination(PageNumberPagination):
 
 class UserViewSet(ModelViewSet):
     queryset = User.objects.all()
-    # renderer_classes = [JSONRenderer]
+    renderer_classes = [JSONRenderer]
     permission_classes = (IsAuthenticatedOrReadOnly,)
     pagination_class = UserPagination
 
