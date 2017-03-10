@@ -1,3 +1,4 @@
+from django.shortcuts import render
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.renderers import JSONRenderer
 from rest_framework.pagination import PageNumberPagination
@@ -22,3 +23,7 @@ class UserViewSet(ModelViewSet):
         if not self.request.user.is_anonymous:
             return UserSerializer
         return BaseUserSerializer
+
+
+def index(request):
+    return render(request, 'instant/index.html')
