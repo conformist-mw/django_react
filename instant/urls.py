@@ -1,7 +1,10 @@
-from django.conf.urls import url
-from .views import UserViewSet, UserDetail
+from django.conf.urls import url, include
+from rest_framework import routers
+from .views import UserViewSet
+
+router = routers.DefaultRouter()
+router.register(r'api', UserViewSet)
 
 urlpatterns = [
-    url(r'^users/$', UserViewSet.as_view({'get': 'list'}), name='users-list'),
-    url(r'^users/(?P<pk>[0-9]+)/$', UserDetail.as_view({'get': 'retrieve'}), name='users-detail'),
+    url(r'^', include(router.urls)),
 ]
