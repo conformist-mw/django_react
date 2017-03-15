@@ -6,12 +6,12 @@ class BaseUserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('full_name', 'age', 'birth')
+        fields = ('id', 'full_name', 'age', 'birth')
 
 
 class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('full_name', 'age', 'birth', 'email',
+        fields = ('id', 'full_name', 'age', 'birth', 'email',
                   'ipv4', 'phone', 'street', 'city')
