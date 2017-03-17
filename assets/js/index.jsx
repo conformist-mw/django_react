@@ -6,10 +6,6 @@ import createHistory from 'history/createBrowserHistory'
 
 const history = createHistory()
 
-let getUsers = function(){
-  return axios.get('http://localhost:8080/instant/api/?page=' + page)
-}
-
 let getUser = function(id){
   return axios.get('http://localhost:8080/instant/api/' + id)
 }
