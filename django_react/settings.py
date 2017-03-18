@@ -32,6 +32,7 @@ ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     'instant.apps.InstantConfig',
+    'sms.apps.SmsConfig',
     'rest_framework',
     'webpack_loader',
     'corsheaders',
