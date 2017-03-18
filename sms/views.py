@@ -3,14 +3,19 @@ from string import ascii_letters, digits
 from .models import Key
 from .serializers import KeySerializer
 from rest_framework.response import Response
+from rest_framework.renderers import JSONRenderer
 from rest_framework.viewsets import ViewSet
 from django.shortcuts import get_object_or_404
 
 
 class KeyViewSet(ViewSet):
+    renderer_classes = [JSONRenderer]
 
     def create(self, request):
-        key = ''.join(choice(ascii_letters + digits) for _ in range(4))
+        while True:
+            key = ''.join(choice(ascii_letters + digits) for _ in range(4))
+            if not Key.objects.filter(id=key).exists():
+                break
         new_key = Key(id=key)
         new_key.save()
         serializer = KeySerializer(new_key)
