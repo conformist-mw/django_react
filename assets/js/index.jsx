@@ -6,8 +6,18 @@ import createHistory from 'history/createBrowserHistory'
 
 const history = createHistory()
 
+let getPage = function(link){
+  if (link.match('.*page') && link != null){
+    return link.split('=').pop()
+  }else{
+    console.log('false')
+    return 1;
+  }
+}
+
+
 let getUser = function(id){
-  return axios.get('http://localhost:8080/instant/api/' + id)
+  return axios.get('/instant/api/' + id)
 }
 
 let User = function(props){
@@ -21,27 +31,57 @@ let User = function(props){
 let Users = React.createClass({
   getInitialState: function(){
     return {
-      link: 'http://localhost:8080/instant/api',
+      link: '/instant/api/?page=',
       users: [],
-      previous: '',
+      current: 1,
+      prev: '',
       next: '',
       count: 0
     }
   },
   componentDidMount: function(){
-    axios.get(this.state.link).then(xhr => {
+    var link = this.state.link
+    if(this.props.match.params.page){
+      link = link + this.props.match.params.page 
+    }else{
+      link = link + this.state.current
+    }
+    axios.get(link).then(xhr => {
       this.setState({
         users: xhr.data.results,
-        previous: xhr.data.previous,
-        next: xhr.data.next,
+        prev: (xhr.data.previous) ? getPage(xhr.data.previous) : 1,
+        next: (xhr.data.next).split('=').pop(),
         count: xhr.data.count
       });
     })
+  },
+  componentWillReceiveProps(nextProps){
+
+    this.setState({
+      current: this.props.match.params.page
+    })
+    console.log(nextProps)
+  },
+  componentDidUpdate: function(prevProps, prevState){
+    console.log('did updated')
+    if(this.state == this.link){
+      var link = '/instant/api/?page=' + this.state.current
+      axios.get(link).then(xhr => {
+        this.setState({
+          users: xhr.data.results,
+          prev: (xhr.data.previous) ? getPage(xhr.data.previous) : 1,
+          next: xhr.data.next.split('=').pop(),
+          count: xhr.data.count
+        });
+      })
+    }
   },
   render: function(){
     return (
       <div>
         <h1>Our users are (overall count: {this.state.count}):</h1>
+        <Link to={"/page/" + this.state.prev}>prev</Link>
+        <Link to={"/page/" + this.state.next}>next</Link>
         <hr />
         {this.state.users.map(user => {
           return <User user={user} key={user.id} />
@@ -87,6 +127,7 @@ ReactDOM.render((
     <div>
       <Route exact path="/" component={Users} />
       <Route path="/profile/:id" component={UserProfile} />
+      <Route path="/page/:page" component={Users} />
     </div>
   </Router>
 ), document.querySelector('#container'))
