@@ -11,6 +11,9 @@ class User(models.Model):
     street = models.CharField(max_length=50, blank=True, null=True)
     city = models.CharField(max_length=50, blank=True, null=True)
 
+    def __str__(self):
+        return self.full_name
+
     @staticmethod
     def _bootstrap(count=300, gender='male'):
         from elizabeth import Generic
