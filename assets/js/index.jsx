@@ -10,11 +10,9 @@ let getPage = function(link){
   if (link.match('.*page') && link != null){
     return link.split('=').pop()
   }else{
-    console.log('false')
     return 1;
   }
 }
-
 
 let getUser = function(id){
   return axios.get('/instant/api/' + id)
@@ -55,25 +53,23 @@ let Users = React.createClass({
       });
     })
   },
-  componentWillReceiveProps(nextProps){
-
-    this.setState({
-      current: this.props.match.params.page
-    })
-    console.log(nextProps)
+  componentWillReceiveProps(){
+    return;
   },
   componentDidUpdate: function(prevProps, prevState){
-    console.log('did updated')
-    if(this.state == this.link){
-      var link = '/instant/api/?page=' + this.state.current
-      axios.get(link).then(xhr => {
-        this.setState({
-          users: xhr.data.results,
-          prev: (xhr.data.previous) ? getPage(xhr.data.previous) : 1,
-          next: xhr.data.next.split('=').pop(),
-          count: xhr.data.count
-        });
-      })
+    if(this.props.match.params.page){
+      if(this.state.current !== this.props.match.params.page){
+        var link = '/instant/api/?page=' + this.props.match.params.page
+        axios.get(link).then(xhr => {
+          this.setState({
+            users: xhr.data.results,
+            prev: (xhr.data.previous) ? getPage(xhr.data.previous) : 1,
+            next: xhr.data.next.split('=').pop(),
+            count: xhr.data.count,
+            current: this.props.match.params.page
+          });
+        })
+      }
     }
   },
   render: function(){
