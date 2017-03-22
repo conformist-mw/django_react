@@ -1,11 +1,67 @@
 {% load render_bundle from webpack_loader %}
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
 	<title>test spa</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'instant/css/bootstrap.min.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'instant/css/bootstrap-theme.min.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'instant/css/main.css' %}">
 </head>
 <body>
-<div id="container"></div>
+<nav class="navbar navbar-default">
+  <div class="container">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/">InstantView</a>
+    </div>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a href="/sms">SMS</a></li>
+        <li><a href="/instant/api">API</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/accounts/login">Login</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 header">
+        	<h3>Instant API view with react (javascript library)</h3>
+        	<p>Example of a Single Page Application (SPA)</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3 left-sidebar">
+        	<div class="col-md-12">
+        		<h4>This site built with:</h4>
+  	        	<ul>
+  	        		<li>Django</li>
+  	        		<li>Django REST Framework</li>
+  	        		<li>React</li>
+  	        		<li>React Router</li>
+  	        		<li>Wepback</li>
+  	        		<li>Bootstrap</li>
+  	        	</ul>
+  	        <p>To navigate through all pages just click arrows or usernames</p></div>
+        </div>
+        <div class="col-md-9" id="content">
+        	<div class="col-md-12 inner_r">Loading...</div>
+				</div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 navbar navbar-default navbar-fixed-bottom">
+    		<div class="container">
+        	<ul class="nav navbar-nav navbar-right">
+        		<li><a href="https://github.com/conformist-mw/django_react">This code on GitHub</a></li>
+        		<li><a class="navbar-brand" href="/">InstantView</a></li>
+      		</ul>
+        </div>
+      </div>
+    </div>
+</div>
+<div ></div>
 {% render_bundle 'main' %}
 </body>
 </html>
