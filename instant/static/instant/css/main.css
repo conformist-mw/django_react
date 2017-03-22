@@ -1,0 +1,53 @@
+.navbar-default {
+	background-color: #d9d9d9;
+}
+.header {
+	background-color: #1a2930;
+	margin-top: -12px;
+	margin-bottom: 8px;
+	border-radius: 5px;
+	color: white;
+}
+.left-sidebar {
+	background-color: #0a1612;
+	border-radius: 5px;
+	color: white;
+}
+#content {
+	background-color: #f7ce3e;
+	border-radius: 5px;
+	margin-bottom: 60px;
+	position: relative;
+}
+.users {
+	padding: 0 80px 25px 80px;
+}
+.prevLink {
+	color: #0a1612;
+	font-size: 48px;
+	position: absolute;
+	left: 25px;
+	top: 250px;
+}
+.nextLink {
+	color: #0a1612;
+	font-size: 48px;
+	position: absolute;
+	right: 25px;
+	top: 250px;
+}
+.user {
+	font-size: 18px;
+}
+.user > a {
+	color: #0a1612;
+}
+.userProfile {
+	padding: 0 80px 0 80px;
+}
+.userProfile > p {
+	font-size: 15px;
+}
+.div-btn {
+	margin: 25px 0 25px 0;
+}
