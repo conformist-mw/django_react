@@ -17,7 +17,7 @@ class User(models.Model):
     @staticmethod
     def _bootstrap(count=300, gender='male'):
         from elizabeth import Generic
-        g = Generic('ru')
+        g = Generic('en')
         for _ in range(count):
             user = User(full_name=g.personal.full_name(gender),
                         age=g.personal.age(),
