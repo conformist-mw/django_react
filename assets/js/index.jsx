@@ -71,7 +71,7 @@ let Users = React.createClass({
   render: function(){
     return (
       <div className="users">
-        <h1>Our users are (overall count: {this.state.count}):</h1>
+        <h3 className="text-center">Overall count of users: {this.state.count}. Page number: {this.state.current}</h3>
         <Link to={"/page/" + this.state.prev} className="prevLink"><span className="glyphicon glyphicon-chevron-left"></span></Link>
         <Link to={"/page/" + this.state.next} className="nextLink"><span className="glyphicon glyphicon-chevron-right"></span></Link>
         <hr />
@@ -119,7 +119,8 @@ let UserProfile = React.createClass({
         {this.state.street != null && <p><b>street</b>: {this.state.street}</p> }
         {this.state.city != null && <p><b>city</b>: {this.state.city}</p> }
         <div className="text-right div-btn">
-          <button type="button" className="btn btn-primary" onClick={history.goBack}> ← Go back</button>
+          
+          <Link to={history.goBack} onClick={history.goBack}><span className="glyphicon glyphicon-chevron-left"></span></Link>
         </div>
       </div>
     )
@@ -129,7 +130,7 @@ let UserProfile = React.createClass({
 let MainPage = function(){
   return (
     <div className='main'>
-      <div id="welcome"><Link to={'/page/1'}>Get started!</Link></div>
+      <div className="text-uppercase" id="welcome"><Link to={'/page/1'}>Get started! <span className="glyphicon glyphicon-arrow-right"></span></Link></div>
     </div>
   )
 };
