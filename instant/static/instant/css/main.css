@@ -1,39 +1,37 @@
-.navbar-default {
-	background-color: #d9d9d9;
+html, body, .container-fluid, .row {
+  height: 100%;
 }
-.header {
-	background-color: #1a2930;
-	margin-top: -12px;
-	margin-bottom: 8px;
-	border-radius: 5px;
-	color: white;
+.navbar {
+  margin-bottom: 0;
 }
-.left-sidebar {
-	background-color: #0a1612;
-	border-radius: 5px;
-	color: white;
+#welcome {
+	font-size: 48px;
+}
+#welcome > a {
+	color: #424242;
+	position: absolute;
+	top: 160px;
+	left: 34%;
+
 }
 #content {
-	background-color: #f7ce3e;
-	border-radius: 5px;
 	margin-bottom: 60px;
-	position: relative;
 }
 .users {
 	padding: 0 80px 25px 80px;
 }
 .prevLink {
 	color: #0a1612;
-	font-size: 48px;
+	font-size: 80px;
 	position: absolute;
-	left: 25px;
+	left: 130px;
 	top: 250px;
 }
 .nextLink {
 	color: #0a1612;
-	font-size: 48px;
+	font-size: 80px;
 	position: absolute;
-	right: 25px;
+	right: 130px;
 	top: 250px;
 }
 .user {
@@ -44,10 +42,28 @@
 }
 .userProfile {
 	padding: 0 80px 0 80px;
+	position: relative;
 }
 .userProfile > p {
 	font-size: 15px;
 }
 .div-btn {
 	margin: 25px 0 25px 0;
+}
+.div-btn > a {
+	position: absolute;
+	top:110px;
+	left: 10px;
+	font-size: 48px;
+	color: #0a1612;
+}
+.sidenav {
+  background-color: #f1f1f1;
+  height: 100%;
+  font-size: 18px;
+}
+footer {
+  background-color: #555;
+  color: white;
+  padding: 15px;
 }
