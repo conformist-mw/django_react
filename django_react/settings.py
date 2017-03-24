@@ -34,7 +34,7 @@ INSTALLED_APPS = [
     'instant.apps.InstantConfig',
     'sms.apps.SmsConfig',
     'rest_framework',
-    'webpack_loader',
+    # 'webpack_loader',
     'corsheaders',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -81,7 +81,7 @@ WSGI_APPLICATION = 'django_react.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'mydatabase',
+        'NAME': 'mydatabase.db',
     }
 }
 
