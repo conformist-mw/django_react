@@ -52,6 +52,7 @@ first of it — live build while you edit `.jsx` file and second is build produ
 ## Useful links
 * [Django project](https://www.djangoproject.com/)
 * [Django REST Framework](http://www.django-rest-framework.org/)
+* [Elizabeth](https://github.com/lk-geimfari/elizabeth)
 * [React JS](https://facebook.github.io/react/)
 * [React Router](https://reacttraining.com/react-router/web/guides/quick-start)
 * [Webpack](https://webpack.js.org/)
