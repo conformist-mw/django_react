@@ -21,8 +21,8 @@ python manage.py migrate
 In User model implement staticmethod `_bootstrap()` that intended to populate database with fake data. To accomplish this run:
 ```
 python manage.py shell
-\>\>\> from instant.models import User
-\>\>\> User._bootstrap()
+ from instant.models import User
+ User._bootstrap()
 ```
 This creates 300 rows of male persons, feel free to run with params `count` and `gender`.
 Now just run django development server and open in browser [link](http://127.0.0.1:8000/)
