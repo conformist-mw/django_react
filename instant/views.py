@@ -1,10 +1,12 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.views.decorators.csrf import csrf_protect
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.renderers import JSONRenderer
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from .models import User
 from .serializers import UserSerializer, BaseUserSerializer
+from .forms import UserCreateForm
 
 
 class UserPagination(PageNumberPagination):
@@ -27,3 +29,15 @@ class UserViewSet(ModelViewSet):
 
 def index(request):
     return render(request, 'instant/index.html')
+
+
+@csrf_protect
+def register(request):
+    if request.method == 'POST':
+        form = UserCreateForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/')
+    args = {}
+    args['form'] = UserCreateForm()
+    return render(request, 'instant/register.html', args)
