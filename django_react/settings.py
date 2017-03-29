@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'sms.apps.SmsConfig',
     'rest_framework',
     # 'webpack_loader',
+    'widget_tweaks',
     'corsheaders',
     'django.contrib.admin',
     'django.contrib.auth',
