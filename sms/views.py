@@ -5,9 +5,7 @@ from .serializers import KeySerializer
 from rest_framework.response import Response
 from rest_framework.renderers import JSONRenderer
 from rest_framework.viewsets import ViewSet
-from django.shortcuts import get_object_or_404
-from django.http import HttpResponse
-from django.template import loader
+from django.shortcuts import get_object_or_404, render
 
 
 class KeyViewSet(ViewSet):
@@ -43,5 +41,4 @@ class KeyViewSet(ViewSet):
 
 
 def index(request):
-    t = loader.get_template('sms/index.html')
-    return HttpResponse(t.render({}, request), content_type='text/html')
+    return render(request, 'sms/index.html')
