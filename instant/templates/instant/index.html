@@ -20,7 +20,9 @@
         <li><a href="/instant/api">API</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
+        <li><a href="/accounts/support/">Support</a></li>
       {% if not user.is_authenticated %}
+        <li><a href="/accounts/register/">Register</a></li>
         <li><a href="/accounts/login/">Login</a></li>
       {% else %}
         <li><a href="/accounts/logout/?next=/">Logout</a></li>
