@@ -1,86 +1,32 @@
-{# load render_bundle from webpack_loader #}
+{% extends 'instant/base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Single Page Application</title>
-	<link rel="stylesheet" type="text/css" href="{% static 'instant/css/bootstrap.min.css' %}">
-	<link rel="stylesheet" type="text/css" href="{% static 'instant/css/bootstrap-theme.min.css' %}">
-	<link rel="stylesheet" type="text/css" href="{% static 'instant/css/main.css' %}">
-</head>
-<body>
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="/">InstantView</a>
-    </div>
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li><a href="/sms">SMS</a></li>
-        <li><a href="/instant/api">API</a></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-      {% if not user.is_authenticated %}
-        <li><a href="/accounts/login/">Login</a></li>
-      {% else %}
-        <li><a href="/accounts/logout/?next=/">Logout</a></li>
-      {% endif %}
-      </ul>
-    </div>
+{% block title %}Login page — InstantView{% endblock %}
+{% block description %}Instant API view — Login Page{% endblock %}
+{% block content %}
+      <div id="content">
+        <div class="col-md-8 col-md-offset-2">
+        {% load widget_tweaks %}
+          <form class="form-horizontal" role="form" action="{% url 'login' %}" method="post">{% csrf_token %}
+          {% for field in form %}
+            <div class="form-group">
+              <label class="col-sm-2 control-label" for="id_{{ field.name }}">{{ field.label }}</label>
+              <div class="col-sm-10">
+                {{ field|attr:"class:form-control" }}
+                {% if field.help_text %}
+                  <p class="help-block"><small>{{ field.help_text }}</small></p>
+                {% endif %}
+              </div>
+            </div>
+            {% endfor %}
+            <div class="form-group">
+              <div class="col-sm-offset-2 col-sm-10 text-right">
+                <button type="submit" class="btn btn-success btn-lg">Login</button>
+              </div>
+            </div>
+          </form>
+          <div class="text-right">
+            <a href="/accounts/password_reset/" class="btn btn-warning"><span class="glyphicon glyphicon-remove-sign"></span> Password Reset</a>
   </div>
-</nav>
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-sm-3 sidenav">
-      <hr>
-      <h3>Single Page Application</h3>
-      <h4>This site built with:</h4>
-      <ul class="nav nav-pills nav-stacked">
-        <li>Django</li>
-        <li>Django REST Framework</li>
-        <li>React</li>
-        <li>React Router</li>
-        <li>Wepback</li>
-        <li>Bootstrap</li>
-      </ul>
-    </div>
-
-    <div class="col-sm-9 main">
-      <h4 class="text-uppercase"><small>Instant API view with react (javascript library)</small></h4>
-      <hr>
-      <div class="row">
-        <div class="col-md-12">
-          <form method="post" action="{% url 'login' %}">
-						{% csrf_token %}
-
-						<div>
-						  <td>{{ form.username.label_tag }}</td>
-						  <td>{{ form.username }}</td>
-						</div>
-						<div>
-						  <td>{{ form.password.label_tag }}</td>
-						  <td>{{ form.password }}</td>
-						</div>
-
-						<div>
-						  <input type="submit" value="login" />
-						  <input type="hidden" name="next" value="" />
-						</div>
-						</form>
         </div>
       </div>
-    </div>
-  </div>
-</div>
-
-<div class="col-xs-12 navbar navbar-inverse navbar-fixed-bottom">
-      <div class="container">
-        <ul class="nav navbar-nav navbar-right">
-          <li><a href="https://github.com/conformist-mw/django_react">This code on GitHub</a></li>
-          <li><a class="navbar-brand" href="/">InstantView</a></li>
-        </ul>
-      </div>
-    </div>
-
-</body>
-</html>
+{% endblock %}

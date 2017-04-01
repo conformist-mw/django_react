@@ -1,80 +1,21 @@
+{% extends 'instant/base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Single Page Application</title>
-  <meta charset="utf-8">
-	<link rel="stylesheet" type="text/css" href="{% static 'instant/css/bootstrap.min.css' %}">
-	<link rel="stylesheet" type="text/css" href="{% static 'instant/css/bootstrap-theme.min.css' %}">
-	<link rel="stylesheet" type="text/css" href="{% static 'instant/css/main.css' %}">
+{% block title %}SMS api description{% endblock %}
+{% block head-extra %}
   <style type="text/css">
     .table thead tr th {
       text-align: center;
     }
   </style>
-</head>
-<body>
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="/">InstantView</a>
-    </div>
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li><a href="/sms/">SMS</a></li>
-        <li><a href="/instant/api">API</a></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="/accounts/support/">Support</a></li>
-      {% if not user.is_authenticated %}
-        <li><a href="/accounts/register/">Register</a></li>
-        <li><a href="/accounts/login/">Login</a></li>
-      {% else %}
-        <li><a href="/accounts/logout/?next=/">Logout</a></li>
-      {% endif %}
-      </ul>
-    </div>
-  </div>
-</nav>
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-sm-3 sidenav">
-      <hr>
-      <h3>Single Page Application</h3>
-      <h4>This site built with:</h4>
-      <ul class="nav nav-pills nav-stacked">
-        <li>Django</li>
-        <li>Django REST Framework</li>
-        <li>Riot js</li>
-        <li>Bootstrap</li>
-      </ul>
-    </div>
-
-    <div class="col-sm-9 main">
-      <h4 class="text-uppercase"><small>Instant API view with riot (javascript library)</small></h4>
-      <hr>
-      <div class="row">
-        <div class="col-md-12">
+{% endblock %}
+{% block description %}Instant API view with riot (javascript library){% endblock %}
+{% block content %}
           <div id="content">
             <keys></keys>
           </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="col-xs-12 navbar navbar-inverse navbar-fixed-bottom">
-      <div class="container">
-        <ul class="nav navbar-nav navbar-right">
-          <li><a href="https://github.com/conformist-mw/django_react">This code on GitHub</a></li>
-          <li><a class="navbar-brand" href="/">InstantView</a></li>
-        </ul>
-      </div>
-    </div>
-<script src="{% static 'instant/js/jquery.min.js' %}"></script>
+{% endblock %}
+{% block js-extra %}
 <script type="riot/tag" src="{% static 'sms/js/keys.js' %}"></script>
 <script type="text/javascript" src="{% static 'sms/js/riot+compiler.min.js' %}"></script>
 <script>riot.mount('keys')</script>
-</body>
-</html>
+{% endblock %}
