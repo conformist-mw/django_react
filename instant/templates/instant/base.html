@@ -1,0 +1,75 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>{% block title %}Single Page Application{% endblock %}</title>
+  <meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="{% static 'instant/css/bootstrap.min.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'instant/css/bootstrap-theme.min.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'instant/css/main.css' %}">
+  {% block head-extra %}{% endblock %}
+</head>
+<body>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/">InstantView</a>
+    </div>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a href="/sms/">SMS</a></li>
+        <li><a href="/instant/api">API</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/instant/support/">Support</a></li>
+      {% if not user.is_authenticated %}
+        <li><a href="/accounts/register/">Register</a></li>
+        <li><a href="/accounts/login/"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      {% else %}
+        <li><a href="/accounts/{{request.user.username}}/"><span class="glyphicon glyphicon-user"></span> {{request.user.username}}</a></li>
+        <li><a href="/accounts/logout/"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+      {% endif %}
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-3 sidenav">
+      <hr>
+      <h3>Single Page Application</h3>
+      <h4>This site built with:</h4>
+      <ul class="nav nav-pills nav-stacked">
+        <li>Django</li>
+        <li>Django REST Framework</li>        
+        <li>React</li>
+        <li>React Router</li>
+        <li>Wepback</li>
+        <li>Bootstrap</li>
+        <li>Riot js</li>
+      </ul>
+    </div>
+    <div class="col-sm-9 main">
+      <h4 class="text-uppercase"><small>{% block description %}Instant API view description{% endblock %}</small></h4>
+      <hr>
+      <div class="row">
+        <div class="col-md-12">
+        {% block content %}{% endblock %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="col-xs-12 navbar navbar-inverse navbar-fixed-bottom">
+      <div class="container">
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="https://github.com/conformist-mw/django_react">This code on GitHub</a></li>
+          <li><a class="navbar-brand" href="/">InstantView</a></li>
+        </ul>
+      </div>
+    </div>
+<script src="{% static 'instant/js/jquery.min.js' %}"></script>
+{% block js-extra %}{% endblock %}
+</body>
+</html>
