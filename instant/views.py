@@ -4,6 +4,7 @@ from rest_framework.viewsets import ModelViewSet
 from rest_framework.renderers import JSONRenderer
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from django.contrib.auth.models import User as UserProfile
 from .models import User
 from .serializers import UserSerializer, BaseUserSerializer
 from .forms import UserCreateForm
@@ -40,4 +41,13 @@ def register(request):
             return redirect('/')
     args = {}
     args['form'] = UserCreateForm()
-    return render(request, 'instant/register.html', args)
+    return render(request, 'registration/register.html', args)
+
+
+def support(request):
+    return render(request, 'instant/support.html')
+
+
+def get_user_profile(request, username):
+    user = UserProfile.objects.get(username=username)
+    return render(request, 'registration/profile.html', {'user': user})
