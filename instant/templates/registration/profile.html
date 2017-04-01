@@ -1,0 +1,15 @@
+{% extends 'instant/base.html' %}
+{% block title %}{{user.username}} profile page{% endblock %}
+{% block description %}Instant API view — {{user.username}} user profile page{% endblock %}
+{% block content %}
+	<div class="col-md-6 col-md-offset-3">
+		<h3>{{user.first_name}} {{user.last_name}}</h3>
+		<h5>Email: {{user.email}}</h5>
+	</div>
+	<div class="col-md-6 col-md-offset-3">
+	<div class="btn-toolbar">
+    <a href="/accounts/password_change/" class="btn btn-info"><span class="glyphicon glyphicon-random"></span> Password Change</a>
+  </div>
+  </div>
+
+{% endblock %}
