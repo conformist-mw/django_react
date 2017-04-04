@@ -7,7 +7,8 @@ from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from django.contrib.auth.models import User as UserProfile
 from .models import User
 from .serializers import UserSerializer, BaseUserSerializer
-from .forms import UserCreateForm
+from .forms import UserCreateForm, FeedBack
+from django.core.mail import send_mail
 
 
 class UserPagination(PageNumberPagination):
@@ -45,7 +46,23 @@ def register(request):
 
 
 def support(request):
-    return render(request, 'instant/support.html')
+    if request.method == 'POST':
+        form = FeedBack(request.POST, request.FILES)
+        if form.is_valid():
+            name = form.cleaned_data['first_name']
+            surname = form.cleaned_data['last_name']
+            phone = form.cleaned_data['phone']
+            email = form.cleaned_data['email']
+            subject = form.cleaned_data['subject']
+            message = form.cleaned_data['message']
+            message = message + \
+                '\nFrom {} {}. Phone: {}'.format(name, surname, phone)
+            recipient = ['conformist.mw@gmail.com']
+            send_mail(subject, message, email, recipient)
+            return redirect('/')
+    else:
+        form = FeedBack()
+    return render(request, 'instant/support.html', {'form': form})
 
 
 def get_user_profile(request, username):
