@@ -61,7 +61,15 @@ def support(request):
             send_mail(subject, message, email, recipient)
             return redirect('/')
     else:
-        form = FeedBack()
+        if request.user.is_authenticated():
+            form = FeedBack(initial={'first_name': request.user.first_name,
+                                     'last_name': request.user.last_name,
+                                     'email': request.user.email})
+            form.fields['first_name'].widget.attrs['disabled'] = True
+            form.fields['last_name'].widget.attrs['disabled'] = True
+            form.fields['email'].widget.attrs['disabled'] = True
+        else:
+            form = FeedBack()
     return render(request, 'instant/support.html', {'form': form})
 
 
