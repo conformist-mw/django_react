@@ -1,0 +1,11 @@
+{% extends 'instant/base.html' %}
+{# load render_bundle from webpack_loader #}
+{% load static %}
+{% block title %}Single Page Application{% endblock %}
+{% block description %}Instant API view with React (javascript library){% endblock %}
+{% block content %}
+          <div class="col-md-8 col-md-offset-2 text-center">
+						<h3>The email has been sent successfully.</h3>          	
+						<a class="btn btn-success" href="/">Return to main page</a>
+          </div>
+{% endblock %}
