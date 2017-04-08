@@ -7,5 +7,5 @@ router.register(r'api', UserViewSet)
 
 urlpatterns = [
     url(r'^', include(router.urls)),
-    url(r'^support/', support, name='support')
+    url(r'^support/', support, name='support'),
 ]
