@@ -1,6 +1,15 @@
 {% extends 'instant/base.html' %}
 {% load static %}
 {% block title %}Support page{% endblock %}
+{% block head-extra %}
+<style type="text/css">
+  #id_image {
+    /* fix image field in firefox */
+    height: auto;
+  }
+</style>
+{% endblock %}
+{% block description %}Form to send email to support{% endblock %}
 {% block content %}
   <div id="content">
     <div class="col-md-8 col-md-offset-2">
@@ -31,7 +40,7 @@
         {% endfor %}
         <div class="form-group">
           <div class="col-sm-offset-2 col-sm-10 text-right">
-            <button type="submit" class="btn btn-success btn-lg">Submit</button>
+            <button type="submit" class="btn btn-success btn-lg">Send mail</button>
           </div>
         </div>
       </form>
