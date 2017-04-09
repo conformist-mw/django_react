@@ -57,15 +57,15 @@ class RestrictedImageField(forms.ImageField):
 
 
 class UserCreateForm(UserCreationForm):
-    username = forms.CharField()
-    email = forms.EmailField(required=True, help_text='user@example.com')
+    username = forms.CharField(help_text='Allowed symbols: only letters, numbers, and @/./+/-/_ characters')
+    email = forms.EmailField(required=False, help_text='user@example.com')
     first_name = forms.CharField()
     last_name = forms.CharField()
 
     class Meta:
         model = UserProfile
-        fields = ('username', 'email', 'password1',
-                  'password2', 'first_name', 'last_name')
+        fields = ('username', 'password1',
+                  'password2', 'email', 'first_name', 'last_name')
 
     def save(self, commit=True):
         user = super(UserCreateForm, self).save(commit=False)
@@ -79,7 +79,6 @@ class FeedBack(forms.Form):
     first_name = forms.CharField(label='First Name', max_length=30)
     last_name = forms.CharField(label='Last Name', max_length=30)
     email = forms.EmailField(label='E-mail', max_length=254)
-    phone = forms.CharField(label='Phone Number', max_length=12)
     subject = forms.CharField(max_length=100)
-    message = forms.CharField(widget=forms.Textarea)
+    message = forms.CharField(widget=forms.Textarea(attrs={'rows': 4}))
     image = RestrictedImageField()
