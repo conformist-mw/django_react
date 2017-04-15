@@ -1,5 +1,13 @@
 {% extends 'instant/base.html' %}
 {% block title %}Register new user{% endblock %}
+{% block head-extra %}
+<style type="text/css">
+  .form-group.required .control-label:after {
+  content:"*";
+  color:red;
+}
+</style>
+{% endblock %}
 {% block description %}Instant API — Registration Form{% endblock %}
 {% block content %}
           <div id="content">
@@ -8,7 +16,7 @@
               <form class="form-horizontal" role="form" action="{% url 'register' %}" method="post">{% csrf_token %}
               {% for field in form %}
                 {% if field.errors %}
-                <div class="form-group has-error">
+                <div class="form-group has-error  {% if field.field.required %}required{% endif %}">
                   <label class="col-sm-2 control-label" for="id_{{ field.name }}">{{ field.label }}</label>
                   <div class="col-sm-10">
                     {{ field|attr:"class:form-control" }}
@@ -18,7 +26,7 @@
                   </div>
                 </div>
                 {% else %}
-                <div class="form-group">
+                <div class="form-group {% if field.field.required %}required{% endif %}">
                   <label class="col-sm-2 control-label" for="id_{{ field.name }}">{{ field.label }}</label>
                   <div class="col-sm-10">
                     {{ field|attr:"class:form-control" }}
@@ -29,11 +37,14 @@
                 </div>
                   {% endif %}
                 {% endfor %}
-                <div class="form-group">
-                  <div class="col-sm-offset-2 col-sm-10 text-right">
-                    <button type="submit" class="btn btn-success btn-lg">Submit</button>
-                  </div>
-                </div>
+            <div class="col-md-6 pull-right">
+              <div class="pull-right">
+                <button type="submit" class="btn btn-success">Register</button>
+              </div>
+            </div>
+            <div class="col-md-6 text-center">
+              <a class="btn btn-primary" href="/login/vk-oauth2/">VK Auth</a>
+            </div>
               </form>
             </div>
           </div>
