@@ -27,7 +27,7 @@
   },
   "homepage": "https://github.com/conformist-mw/django_react#readme",
   "devDependencies": {
-    "axios": "^0.15.3",
+    "axios": "^0.21.1",
     "babel-core": "^6.23.1",
     "babel-loader": "^6.4.0",
     "babel-preset-es2015": "^6.22.0",
