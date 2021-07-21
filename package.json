@@ -42,5 +42,8 @@
     "riot": "^3.3.2",
     "webpack": "^2.2.1",
     "webpack-bundle-tracker": "^0.2.0"
+  },
+  "dependencies": {
+    "yargs-parser": "^4.2.1"
   }
 }
