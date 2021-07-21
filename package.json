@@ -44,6 +44,6 @@
     "webpack-bundle-tracker": "^0.2.0"
   },
   "dependencies": {
-    "yargs-parser": "^4.2.1"
+    "yargs-parser": "^5.0.1"
   }
 }
