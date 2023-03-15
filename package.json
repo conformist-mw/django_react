@@ -42,7 +42,7 @@
     "react-router": "^4.0.0",
     "react-router-dom": "^4.0.0",
     "riot": "^3.3.2",
-    "webpack": "^5.74.0",
+    "webpack": "^5.76.0",
     "webpack-bundle-tracker": "^0.2.0"
   },
   "dependencies": {
