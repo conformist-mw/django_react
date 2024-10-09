@@ -5,3 +5,4 @@ assets/bundles/*
 !assets/bundles/.gitkeep
 webpack-stats.json
 mydatabase.db
+.venv
